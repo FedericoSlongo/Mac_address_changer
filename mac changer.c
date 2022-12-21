@@ -31,12 +31,14 @@ int main(){
         temp++;
     }
     command[temp] = ' ';
-    command[temp + 1] = 'd';
-    command[temp + 2] = 'o';
-    command[temp + 3] = 'w';
-    command[temp + 4] = 'n';
+    temp++;
+    command[temp] = 'd';
+    command[temp + 1] = 'o';
+    command[temp + 2] = 'w';
+    command[temp + 3] = 'n';
+    command[temp + 4] = '\0';
 
-    printf("%s", command);
-    //system(command);
-
+    printf("The adaptor is being put down\n");
+    system(command);
+    printf("The adaptor is down\n");
 }
