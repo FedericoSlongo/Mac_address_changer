@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 //This program was  made for linux and will not work on windows
 int main(){
     if (getuid()){
-        printf("! The program is not running as root !\n!! The program is terminated !!\n");
+        printf("\x1b[31m! The program is not running as root !\n!! The program is terminated !!\n");
         return 1;
     }
 
@@ -16,7 +17,7 @@ int main(){
     gets(mac);
     //Checking if the mac address is a valid one
     if(mac[2] != ':' || mac[5] != ':' || mac[8] != ':' || mac[11] != ':' || mac[14] != ':'){
-        printf("The mac address is not valid \nThe program is terminated\n");
+        printf("\x1b[31mThe mac address is not valid \nThe program is terminated\n");
         return 2;
     }
 
