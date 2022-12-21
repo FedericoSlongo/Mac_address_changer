@@ -4,7 +4,7 @@
 //This program was  made for linux and will not work on windows
 int main(){
     if (getuid()){
-        printf("! The program is not running as root !\n");
+        printf("! The program is not running as root !\n!! The program is terminated !!\n");
         return 1;
     }
 
@@ -14,15 +14,16 @@ int main(){
     //Data insertion
     printf("Insert the mac address to set to : ");
     gets(mac);
+    //Checking if the mac address is a valid one
+    if(mac[2] != ':' || mac[5] != ':' || mac[8] != ':' || mac[11] != ':' || mac[14] != ':'){
+        printf("The mac address is not valid \nThe program is terminated\n");
+        return 2;
+    }
+
     printf("Insert the name of the internet adaptor : ");
     gets(adaptor);
 
-    //Checking if the mac address is a valid one
-    if(mac[2] != ':' || mac[5] != ':' || mac[8] != ':' || mac[11] != ':' || mac[14] != ':'){
-        printf("The mac address is not valid");
-        return 2;
-    }
-    //int counter to keep easy track of the command length
+    //adding the name of the adaptor to the command string, which will get used later
     int temp = 16;
     char command[101] = "ip link set dev ";
     for (int i = 0; i < strlen(adaptor); i++)
@@ -32,13 +33,14 @@ int main(){
     }
     command[temp] = ' ';
     temp++;
+
+    //The adaptor gets put down
     command[temp] = 'd';
     command[temp + 1] = 'o';
     command[temp + 2] = 'w';
     command[temp + 3] = 'n';
     command[temp + 4] = '\0';
 
-    //The adaptor gets put down
     printf("The adaptor is being put down\n");
     system(command);
     printf("The adaptor is down\n");
@@ -59,7 +61,7 @@ int main(){
     system(command);
     printf("The mac address is changed\n");
     
-
+    //The adaptor gets put back up
     command[temp] = 'u';
     command[temp + 1] = 'p';
     command[temp + 2] = '\0';
