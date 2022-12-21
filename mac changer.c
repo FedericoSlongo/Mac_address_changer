@@ -40,7 +40,7 @@ int main(){
 
     //The adaptor gets put down
     printf("The adaptor is being put down\n");
-    //system(command);
+    system(command);
     printf("The adaptor is down\n");
 
     //The adpator mac gets changed 
@@ -56,7 +56,17 @@ int main(){
         command[(temp + 7) + (i + 1)] = mac[i];
 
     printf("The mac address is being changed\n");
-    //system(command);
-    printf("The mac address is changed\n")
+    system(command);
+    printf("The mac address is changed\n");
     
+
+    command[temp] = 'u';
+    command[temp + 1] = 'p';
+    command[temp + 2] = '\0';
+
+    printf("The network is coming back up\n");
+    system(command);
+    printf("The network is back up\n")
+
+    return 0;
 }
