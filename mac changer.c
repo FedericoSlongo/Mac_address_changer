@@ -66,7 +66,7 @@ int main(){
 
     printf("The network is coming back up\n");
     system(command);
-    printf("The network is back up\n")
+    printf("The network is back up\n");
 
     return 0;
 }
