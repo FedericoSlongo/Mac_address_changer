@@ -8,9 +8,11 @@ int main(){
         printf("\x1b[31m! The program is not running as root !\n!! The program is terminated !!\n");
         return 1;
     }
-
+    //The error variable keeps track of an eventual error code
     int error = 0;
+    //The name of the network adaptor
     char adaptor[26];
+    //The mac address
     char mac[18];
 
     //Data insertion
