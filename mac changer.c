@@ -9,6 +9,7 @@ int main(){
         return 1;
     }
 
+    int error = 0;
     char adaptor[26];
     char mac[18];
 
@@ -43,7 +44,11 @@ int main(){
     command[temp + 4] = '\0';
 
     printf("The adaptor is being put down\n");
-    system(command);
+    error = system(command);
+    if(error != 0){
+        printf("The adaptor isn't down and the exit code is %d", error);
+        return 3;
+    }
     printf("The adaptor is down\n");
 
     //The adpator mac gets changed 
@@ -59,7 +64,11 @@ int main(){
         command[(temp + 7) + (i + 1)] = mac[i];
 
     printf("The mac address is being changed\n");
-    system(command);
+    error = system(command);
+    if(error != 0){
+        printf("The mac isn't changed and the exit code is %d", error);
+        return 4;
+    }
     printf("The mac address is changed\n");
     
     //The adaptor gets put back up
@@ -69,6 +78,10 @@ int main(){
 
     printf("The network is coming back up\n");
     system(command);
+    if(error != 0){
+        printf("The adaptor isn't up and the exit code is %d", error);
+        return 5;
+    }
     printf("The network is back up\n");
 
     return 0;
