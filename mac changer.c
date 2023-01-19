@@ -14,57 +14,8 @@ int main(){
     char adaptor[26];
     //The mac address
     char mac[18];
-    //The coiche 
-    char coiche[100];
-    //Temporary varibale for the generation of the mac address
-    int mac_temp;
-
-    int temp;
-
-    int decimal_Number;
-
-    //Asking the user what to do
-    printf("Do you want to create a [r]andom mac address or [s]et your own?\n");
-    fflush(stdin);
-    gets(coiche);
-    fflush(stdin);
-    
-    if(coiche[0] == 's')
-        goto set_mac;
-    if(coiche[0] == 'r')
-        goto random;
-    
-    random:
-
-    mac_temp = rand() % (253);
-
-    for(int i = 0; i > 4; i ++){
-        goto hex_con;
-        inside_of_for:
-        mac_temp = rand() % (256);
-    }
-
-    hex_con:
-    
-    decimal_Number = mac_temp;
-    int i = 1, j;
-    
-    while (decimal_Number != 0) {
-        temp = decimal_Number % 16;
-        
-        if (temp < 10)
-            temp = temp + 48;
-        else
-            temp = temp + 55;
-        mac[i++] = temp;
-        decimal_Number = decimal_Number / 16;
-    }
-
-    goto inside_of_for;
-
-
-
-
+    //A temporary variable
+    int temp = 0;
 
     set_mac:
     //Data insertion
