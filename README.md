@@ -2,7 +2,7 @@
 This is a simple mac address changer writen in c for linux    
 **This program will not work in windows**
   
-The program works  
+The program works™
 
 # Exiting number  
 ## Good:  
