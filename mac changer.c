@@ -5,7 +5,7 @@
 //This program was  made for linux and will not work on windows
 int main(){
     if (getuid()){
-        printf("\x1b[31m! The program is not running as root !\n!! The program is terminated !!\n");
+        printf("\x1b[31m! The program is not running as root !\n");
         return 1;
     }
     //The error variable keeps track of an eventual error code
@@ -14,8 +14,8 @@ int main(){
     char adaptor[26];
     //The mac address
     char mac[18];
-    //A temporary variable
-    int temp = 0;
+    //Saves the position for string text adding in the command
+    int commandStringPos = 0;
 
     set_mac:
     //Data insertion
@@ -31,22 +31,22 @@ int main(){
     gets(adaptor);
 
     //adding the name of the adaptor to the command string, which will get used later
-    temp = 16;
     char command[101] = "ip link set dev ";
+    commandStringPos = strlen(command);
     for (int i = 0; i < strlen(adaptor); i++)
     {
-        command[temp] = adaptor[i];
-        temp++;
+        command[commandStringPos] = adaptor[i];
+        commandStringPos++;
     }
-    command[temp] = ' ';
-    temp++;
+    command[commandStringPos] = ' ';
+    commandStringPos++;
 
     //The adaptor gets put down
-    command[temp] = 'd';
-    command[temp + 1] = 'o';
-    command[temp + 2] = 'w';
-    command[temp + 3] = 'n';
-    command[temp + 4] = '\0';
+    command[commandStringPos] = 'd';
+    command[commandStringPos + 1] = 'o';
+    command[commandStringPos + 2] = 'w';
+    command[commandStringPos + 3] = 'n';
+    command[commandStringPos + 4] = '\0';
 
     printf("The adaptor is being put down\n");
     error = system(command);
@@ -57,16 +57,16 @@ int main(){
     printf("The adaptor is down\n");
 
     //The adpator mac gets changed 
-    command[temp] = 'a';
-    command[temp + 1] = 'd';
-    command[temp + 2] = 'd';
-    command[temp + 3] = 'r';
-    command[temp + 4] = 'e';
-    command[temp + 5] = 's';
-    command[temp + 6] = 's';
-    command[temp + 7] = ' ';
+    command[commandStringPos] = 'a';
+    command[commandStringPos + 1] = 'd';
+    command[commandStringPos + 2] = 'd';
+    command[commandStringPos + 3] = 'r';
+    command[commandStringPos + 4] = 'e';
+    command[commandStringPos + 5] = 's';
+    command[commandStringPos + 6] = 's';
+    command[commandStringPos + 7] = ' ';
     for (int i = 0; i < 18; i++)
-        command[(temp + 7) + (i + 1)] = mac[i];
+        command[(commandStringPos + 7) + (i + 1)] = mac[i];
 
     printf("The mac address is being changed\n");
     error = system(command);
@@ -77,9 +77,9 @@ int main(){
     printf("The mac address is changed\n");
     
     //The adaptor gets put back up
-    command[temp] = 'u';
-    command[temp + 1] = 'p';
-    command[temp + 2] = '\0';
+    command[commandStringPos] = 'u';
+    command[commandStringPos + 1] = 'p';
+    command[commandStringPos + 2] = '\0';
 
     printf("The network is coming back up\n");
     system(command);
