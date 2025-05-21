@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 //This program was  made for linux and will not work on windows
 int main(){
@@ -20,7 +21,7 @@ int main(){
     set_mac:
     //Data insertion
     printf("Insert the mac address to set to : ");
-    gets(mac);
+    fgets(mac, sizeof(mac), stdin);
     //Checking if the mac address is a valid one
     if(mac[2] != ':' || mac[5] != ':' || mac[8] != ':' || mac[11] != ':' || mac[14] != ':'){
         printf("\x1b[31mThe mac address is not valid \nThe program is terminated\n");
@@ -28,7 +29,7 @@ int main(){
     }
 
     printf("Insert the name of the internet adaptor : ");
-    gets(adaptor);
+    fgets(adaptor, sizeof(adaptor), stdin);
 
     //adding the name of the adaptor to the command string, which will get used later
     char command[101] = "ip link set dev ";
